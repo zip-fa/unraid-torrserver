@@ -1,38 +1,46 @@
-<?xml version="1.0"?>
-<Container version="2">
-  <Name>torrserver</Name>
-  <Repository>ghcr.io/yourok/torrserver</Repository>
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>Torrserver</Name>
+  <Description>TorrServer is a program that allows users to view torrents online without the need for preliminary file downloading.[br]
+The core functionality of TorrServer includes caching torrents and subsequent data transfer via the HTTP protocol allowing the cache size to be adjusted according to the system parameters and the user's internet connection speed.[br]
+Features[br][br]
+- Caching[br]
+- Streaming[br]
+- Local and Remote Server[br]
+- Viewing torrents on various devices[br]
+- Integration with other apps through API[br]
+- Cross-browser modern web interface[br]
+- Optional DLNA server</Description>
   <Registry>https://ghcr.io/yourok/torrserver/</Registry>
-  <Network>bridge</Network>
+  <Repository>yourok/torrserver</Repository>
+  <BindTime>true</BindTime>
   <Privileged>false</Privileged>
-  <Support>https://forums.unraid.net/topic/174823-torrserver-matrix/</Support>
-  <Project>https://github.com/YouROK/TorrServer</Project>
-  <Overview>Introduction&#xD;
-[br][br]&#xD;
-TorrServer is a program that allows users to view torrents online without the need for preliminary file downloading.&#xD;
-The core functionality of TorrServer includes caching torrents and subsequent data transfer via the HTTP protocol,&#xD;
-allowing the cache size to be adjusted according to the system parameters and the user's internet connection speed.&#xD;
-[br][br]&#xD;
-Features&#xD;
-[br][br]&#xD;
-- Caching&#xD;
-- Streaming&#xD;
-- Local and Remote Server&#xD;
-- Viewing torrents on various devices&#xD;
-- Integration with other apps through API&#xD;
-- Cross-browser modern web interface&#xD;
-- Optional DLNA server&#xD;
-  </Overview>
-  <Category>Downloaders: MediaApp:Video</Category>
-  <WebUI>http://[IP]:[PORT:5665]</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.xml</TemplateURL>
+  <Environment/>
+  <Networking>
+    <Mode>host</Mode>
+    <Publish>
+      <Port>
+        <HostPort>5555</HostPort>
+        <ContainerPort>5555</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/torrserver/config</HostDir>
+      <ContainerDir>/opt/ts/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/torrserver/torrents</HostDir>
+      <ContainerDir>/opt/ts/torrents</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version>05616fd2</Version>
+  <WebUI>http://[iP]:[PORT:5555]/</WebUI>
+  <Banner>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.png</Banner>
   <Icon>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.png</Icon>
-  <DonateText></DonateText>
-  <DonateLink></DonateLink>
-
-  <Config Name="Server IP" Target="serverIP" Default="0.0.0.0" Mode="" Description="Server IPk" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Server Port" Target="5555" Default="5555" Mode="tcp" Description="Server Port" Type="Port" Display="always" Required="false" Mask="false">5555</Config>
-
-  <Config Name="Torrents save path" Target="/opt/ts/torrents" Default="/mnt/user/appdata/torrserver/torrents" Mode="rw" Description="Container Path: /opt/ts/torrents" Type="Path" Display="always" Required="false" Mask="false"/>
-  <Config Name="Configs" Target="/opt/ts/config" Default="/mnt/user/appdata/torrserver/config" Mode="rw" Description="Container Path: /opt/ts/config" Type="Path" Display="always" Required="false" Mask="false"/>
+  <ExtraParams></ExtraParams>
 </Container>
