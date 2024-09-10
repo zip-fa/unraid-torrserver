@@ -1,46 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Container>
+<?xml version="1.0"?>
+<Container version="2">
   <Name>Torrserver</Name>
-  <Description>TorrServer is a program that allows users to view torrents online without the need for preliminary file downloading.[br]
-The core functionality of TorrServer includes caching torrents and subsequent data transfer via the HTTP protocol allowing the cache size to be adjusted according to the system parameters and the user's internet connection speed.[br]
-Features[br][br]
-- Caching[br]
-- Streaming[br]
-- Local and Remote Server[br]
-- Viewing torrents on various devices[br]
-- Integration with other apps through API[br]
-- Cross-browser modern web interface[br]
-- Optional DLNA server</Description>
-  <Registry>https://ghcr.io/yourok/torrserver/</Registry>
-  <Repository>yourok/torrserver</Repository>
-  <BindTime>true</BindTime>
+  <Repository>ghcr.io/yourok/torrserver</Repository>
+  <Registry>https://github.com/YouROK/TorrServer</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Environment/>
-  <Networking>
-    <Mode>host</Mode>
-    <Publish>
-      <Port>
-        <HostPort>5555</HostPort>
-        <ContainerPort>5555</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-    </Publish>
-  </Networking>
-  <Data>
-    <Volume>
-      <HostDir>/mnt/cache/appdata/torrserver/config</HostDir>
-      <ContainerDir>/opt/ts/config</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir>/mnt/cache/appdata/torrserver/torrents</HostDir>
-      <ContainerDir>/opt/ts/torrents</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-  </Data>
-  <Version>05616fd2</Version>
-  <WebUI>http://[iP]:[PORT:5555]/</WebUI>
-  <Banner>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.png</Banner>
+  <Support>https://forums.unraid.net/topic/174823-torrserver-matrix/</Support>
+  <Project>https://github.com/Jackett/Jackett</Project>
+  <Overview>TorrServer is a program that allows users to view torrents online without the need for preliminary file downloading. The core functionality of TorrServer includes caching torrents and subsequent data transfer via the HTTP protocol, allowing the cache size to be adjusted according to the system parameters and the user's internet connection speed.&#xD;
+</Overview>
+  <Category>Other:</Category>
+  <WebUI>http://[IP]:[PORT:8090]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/zip-fa/unraid-torrserver/main/torrserver.png</Icon>
-  <ExtraParams></ExtraParams>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1725996219</DateInstalled>
+  <DonateText>Donations</DonateText>
+  <DonateLink>https://github.com/YouROK/TorrServer</DonateLink>
+  <Requires/>
+  <Config Name="WebUI" Target="8090" Default="8090" Mode="tcp" Description="WebUI" Type="Port" Display="always" Required="true" Mask="false">8090</Config>
+  <Config Name="Path: /opt/ts/torrents" Target="/opt/ts/torrents" Default="/mnt/user/appdata/torrserver/torrents" Mode="rw" Description="Path to torrents" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/torrserver/torrents</Config>
+  <Config Name="Path: /opt/ts/config" Target="/opt/ts/config" Default="/mnt/user/appdata/torrserver/config" Mode="rw" Description="Path to configs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/torrserver/config</Config>
 </Container>
